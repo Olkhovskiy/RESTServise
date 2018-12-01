@@ -2,6 +2,7 @@ package hello;
 
 import java.util.concurrent.atomic.AtomicLong;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,13 +11,10 @@ import org.springframework.web.bind.annotation.RestController;
 public class PaceController {
 
     @RequestMapping("/pace")
-    public Pace getPace(@RequestParam double distance,
-                         @RequestParam int hours,
-                         @RequestParam int minute
-                         ) {
-
-
-        return new Pace(distance,hours,minute);
-        //return new Pace(distance);
+    public Pace getPace(@RequestParam(defaultValue = "1") double distance,
+                        @RequestParam(defaultValue = "0") int hours,
+                        @RequestParam(defaultValue = "0") int minute
+    ) {
+        return new Pace(distance, hours, minute);
     }
 }
